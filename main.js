@@ -151,7 +151,6 @@ class RikaFirenet extends utils.Adapter {
                     this.log.info('Logged in to rika firenet');
                     this.log.debug(`Cookie: ${cookie}`);
                     let sessionId = cookie.toString().split(';')[0];
-                    sessionId = sessionId.replace('connect.sid=', '');
                     this.log.debug(`Session-ID: ${sessionId}`);
                     return sessionId;
                 }
@@ -168,7 +167,7 @@ class RikaFirenet extends utils.Adapter {
             try {
                 const payload = {
                     headers: { 
-                      'Cookie': `${this.sessionId}; connect.sid=${this.sessionId}`, 
+                      'Cookie': this.sessionId, 
                       'Accept-Encoding': '*'
                     }
                 }
