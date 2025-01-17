@@ -176,7 +176,7 @@ class RikaFirenet extends utils.Adapter {
                       'Cookie': cookie, 
                       'Accept-Encoding': '*'
                     }
-                                  }
+                }
                 const response = await axios.request(payload);
 
                 this.log.debug(`${response.status} - API-Connection successful`);
