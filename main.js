@@ -7,426 +7,380 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
+const axios = require("axios").default;
 
-// Load your modules here, e.g.:
-
-const request = require("request").defaults({ jar: true });
-
-var changeInProgress = false;
+const baseUrl = 'https://www.rika-firenet.com';
+const userAgent =
+    'Mozilla/5.0 (iPhone13,2; U; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/15E148 Safari/602.1';
+const requestHeader = {
+    'Content-Type': 'application/json',
+    'accept-encoding': '*',
+    Accept: 'application/json',
+    'User-Agent': userAgent
+};
 
 class RikaFirenet extends utils.Adapter {
-  /**
-   * @param [options]
-   */
-  constructor(options) {
-    super({
-      ...options,
-      name: "rika-firenet",
-    });
+    /**
+     * @param [options]
+     */
+    constructor(options) {
+        super({
+            ...options,
+            name: "rika-firenet",
+        });
 
-    this.on("ready", this.onReady.bind(this));
-    this.on("stateChange", this.onStateChange.bind(this));
-    this.on("objectChange", this.onObjectChange.bind(this));
-    // this.on("message", this.onMessage.bind(this));
-    this.on("unload", this.onUnload.bind(this));
+        this.on("ready", this.onReady.bind(this));
+        this.on("stateChange", this.onStateChange.bind(this));
+        this.on("objectChange", this.onObjectChange.bind(this));
+        // this.on("message", this.onMessage.bind(this));
+        this.on("unload", this.onUnload.bind(this));
 
-    //init timeout for recursive call webLogin() or getstoveValues()
-    this.TimeoutID = null;
-  }
+        this.timeout = undefined;
+        this.sessionId = '';
+        this.isConnected = false;
+        this.isReady = false;
+        this.changeInProgress = false;
 
-  /**
-   * Is called when databases are connected and adapter received configuration.
-   */
-  async onReady() {
-    // Initialize your adapter here
-
-    // Reset the connection indicator during startup
-    this.setState("info.connection", false, true);
-
-    // The adapters config (in the instance object everything under the attribute "native") is accessible via
-    // this.config:
-    //log some of the config attributes
-    this.log.info(`config user: ${this.config.myuser}`);
-    this.log.info(`config interval: ${this.config.myinterval}`);
-    this.log.info(`config stoveid: ${this.config.mystoveid}`);
-
-    if (!this.config.mystoveid) {
-      this.log.error(
-        `stove id is invalid - please correct and restart adapter.`,
-      );
-      return;
     }
 
-    //create device
-    this.setObjectNotExists(this.config.mystoveid, {
-      type: "device",
-      common: {
-        name: this.config.mystoveid,
-      },
-      native: {},
-    });
-
-    //call weblogin
-    await this.webLogin();
-  }
-
-  /**
-   * @param stateNameStr
-   * @param stateRoleStr
-   * @param stateReadBool
-   * @param stateWriteBool
-   * @param stateValueMix
-   * @param stateTypeStr
-   */
-  setStoveStates(
-    stateNameStr,
-    stateTypeStr,
-    stateRoleStr,
-    stateReadBool,
-    stateWriteBool,
-    stateValueMix,
-  ) {
-    //set object with specific datatype and value, subscribe and set value
-    this.setObjectNotExists(`${this.config.mystoveid}.${stateNameStr}`, {
-      type: stateTypeStr,
-      common: {
-        name: stateNameStr,
-        type: typeof stateValueMix,
-        role: stateRoleStr,
-        read: stateReadBool,
-        write: stateWriteBool,
-      },
-      native: {},
-    });
-
-    //subscribe states
-    this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
-
-    //set states
-    this.setState(`${this.config.mystoveid}.${stateNameStr}`, {
-      val: stateValueMix,
-      ack: true,
-    });
-  }
-
-  async webLogin() {
-    //webLogin() {
-    clearTimeout(this.TimeoutID);
-
-    var myemail = this.config.myuser;
-    var mypassword = this.config.mypassword;
-    // var myapiserver = "https://www.rika-firenet.com";
-
-    // in response steht jetzt die Antwort
-    // wenn man sie außerhalb der Funktion nutzen will:
-    // return response; // oder einen Teil davon
-    request.post(
-      {
-        url: "https://www.rika-firenet.com/web/login",
-        form: { email: myemail, password: mypassword },
-      },
-      (error, response, body) => {
-        if (body.indexOf("summary") > -1) {
-          // login successful
-
-          this.log.info("Web-Login successful");
-
-          //get values, if login successful
-          this.getstoveValues();
-        } else {
-          this.log.error("Web-Login NOT successful");
+    /**
+     * Getter for the connected property.
+     *
+     * @returns The connection state.
+     */
+    get isConnected() {
+        return this._isConnected || false;
+    }
+    /**
+     * Setter for the connected property.
+     *
+     * @param value - The new value for the connected property.
+     */
+    set isConnected(value) {
+        this._isConnected = value;
+        // only update the state if the adapter is ready (prevent error messages on startup)
+        if (this.isReady) {
+            this.setState('info.connection', { val: value, ack: true });
         }
-      },
-    );
-  }
+    }
+    /**
+     * Is called when databases are connected and adapter received configuration.
+     */
+    async onReady() {
+        // Initialize your adapter here
 
-  async getstoveValues() {
-    //getstoveValues() {
-    if (changeInProgress == false) {
-      var stoveID = this.config.mystoveid;
-      // var apiserver = "https://www.rika-firenet.com";
+        this.isReady = true;
+        this.sessionId = (await this.webLogin(this.config.myuser, this.config.mypassword)) || '';
+        this.isConnected = this.sessionId !== '';
 
-      request.get(
-        {
-          url: `https://www.rika-firenet.com/api/client/${stoveID}/status`,
-        },
-        (error, response, body) => {
-          this.log.info(`${response.statusCode} - API-Connection sucessful`);
-          if (response.statusCode == 200 && body.indexOf(stoveID) > -1) {
-            // request successful
-            this.setState("info.connection", true, true);
-            var json = JSON.parse(body);
-            const content = json;
+        // Reset the connection indicator during startup
+        this.setState("info.connection", false, true);
 
-            //testoutput, if correct data come in
-            //this.log.info("lastConfirmedRevision: " + content.lastConfirmedRevision);
+        // The adapters config (in the instance object everything under the attribute "native") is accessible via
+        // this.config:
+        //log some of the config attributes
+        this.log.info(`config user: ${this.config.myuser}`);
+        this.log.info(`config interval: ${this.config.myinterval}`);
+        this.log.info(`config stoveid: ${this.config.mystoveid}`);
 
-            //set objects and values if correct data come in
-            if (content.lastConfirmedRevision) {
-              this.setStoveStates(
-                "name",
-                "state",
-                "",
-                true,
-                false,
-                content.name,
-              );
-              this.setStoveStates(
-                "stoveID",
-                "state",
-                "",
-                true,
-                false,
-                content.stoveID,
-              );
-              this.setStoveStates(
-                "lastSeenMinutes",
-                "state",
-                "",
-                true,
-                false,
-                content.lastSeenMinutes,
-              );
-              this.setStoveStates(
-                "lastConfirmedRevision",
-                "state",
-                "",
-                true,
-                false,
-                content.lastConfirmedRevision,
-              );
-              this.setStoveStates(
-                "stoveType",
-                "state",
-                "",
-                true,
-                false,
-                content.stoveType,
-              );
-              this.setStoveStates("oem", "state", "", true, false, content.oem);
+        if (!this.config.mystoveid) {
+            this.log.error(
+                `stove id is invalid - please correct and restart adapter.`,
+            );
+            return;
+        }
 
-              //create channels
-              this.setStoveStates("controls", "channel", "", false, false, "");
-              this.setStoveStates("sensors", "channel", "", false, false, "");
-              this.setStoveStates(
-                "stoveFeatures",
-                "channel",
-                "",
-                false,
-                false,
-                "",
-              );
+        //create device
+        this.setObjectNotExists(this.config.mystoveid, {
+            type: "device",
+            common: {
+                name: this.config.mystoveid,
+            },
+            native: {},
+        });
 
-              //create and/or update states in controls, sensors and stoveFeatures
-              for (let [key, value] of Object.entries(content.controls)) {
-                this.setStoveStates(
-                  `controls.${key}`,
-                  "state",
-                  "",
-                  true,
-                  true,
-                  value,
-                );
-                //this.setState(this.config.mystoveid + "." + `controls.${key}`, "state", "", true, true, value);
-              }
-              for (let [key, value] of Object.entries(content.sensors)) {
-                this.setStoveStates(
-                  `sensors.${key}`,
-                  "state",
-                  "",
-                  true,
-                  false,
-                  value,
-                );
-              }
-              for (let [key, value] of Object.entries(content.stoveFeatures)) {
-                this.setStoveStates(
-                  `stoveFeatures.${key}`,
-                  "state",
-                  "",
-                  true,
-                  false,
-                  value,
-                );
-                //this.setState(this.config.mystoveid + "." + `stoveFeatures.${key}`, "state", "", true, false, value);
-              }
-            } else {
-              this.log.error(
-                `Malformed json: ${JSON.stringify(response.data)}`,
-              );
+    }
+
+    /**
+     * @param stateNameStr
+     * @param stateRoleStr
+     * @param stateReadBool
+     * @param stateWriteBool
+     * @param stateValueMix
+     * @param stateTypeStr
+     */
+    setStoveStates(stateNameStr, stateTypeStr, stateRoleStr, stateReadBool, stateWriteBool, stateValueMix) {
+        //set object with specific datatype and value, subscribe and set value
+        this.setObjectNotExists(`${this.config.mystoveid}.${stateNameStr}`, {
+            type: stateTypeStr,
+            common: {
+                name: stateNameStr,
+                type: typeof stateValueMix,
+                role: stateRoleStr,
+                read: stateReadBool,
+                write: stateWriteBool,
+            },
+            native: {},
+        });
+
+        //subscribe states
+        this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
+
+        //set states
+        this.setState(`${this.config.mystoveid}.${stateNameStr}`, {
+            val: stateValueMix,
+            ack: true,
+        });
+    }
+
+    async webLogin(myemail = '', mypassword = '') {
+        clearTimeout(this.timeout);
+
+        try {
+            const payload = {
+                email: myemail,
+                password: mypassword,
+            };
+            const response = await axios.post(`${baseUrl}/web/login`, payload);
+
+            if (response.headers && response.headers['set-cookie']) {
+                const cookie = response.headers['set-cookie'];
+                if (cookie) {
+                    this.log.info('Logged in to rika firenet');
+                    const sessionId = cookie.toString().split(';')[0];
+                    this.log.debug(`Session-ID: ${sessionId}`);
+                    //get values, if login successful
+                    this.getstoveValues(requestHeader, sessionId);
+                    return sessionId;
+                }
+                throw new Error('Login failed. No session id received');
             }
 
-            //call getstoveValues() every 1 minute
-            //https://blog.scottlogic.com/2017/09/14/asynchronous-recursion.html
-            clearTimeout(this.TimeoutID);
-            this.TimeoutID = setTimeout(
-              () => this.getstoveValues(),
-              this.config.myinterval * 60000,
-            );
-          } else {
-            //login failed
-            this.log.error("get data not successful");
-          }
-        },
-      );
-    } else {
-      this.log.info("change in progress: try to getstoveValues() next time");
+        } catch (error) {
+            this.log.error(`Web-Login error: ${error}`);
+        }
     }
-  }
 
-  async setstoveValues(controlname, controlvalue) {
-    //set true, to not run getstoveValues() at this time
-    changeInProgress = true;
+    async getstoveValues(header, cookie) {
+        if (!this.changeInProgress) {
+            var stoveID = this.config.mystoveid;
 
-    var stoveID = this.config.mystoveid;
-    //var apiserver = "https://www.rika-firenet.com";
+            try {
+                header['Cookie'] = cookie;
+                const response = await axios.get(`${baseUrl}/api/client/${stoveID}/status`, { headers: header });
 
-    try {
-      //get current json
-      //const response1 = await axios.get(apiserver + '/api/client/' + stoveID + '/status', { jar: cookieJar, withCredentials: true })
-      //const content = response1.data;
+                this.log.debug(`${response.status} - API-Connection successful`);
+ 
+                if (response.status == 200 && response.data.indexOf(stoveID) > -1) {
+                    // request successful
+                    this.setState("info.connection", true, true);
+                    const content = response.data;
 
-      request.get(
-        {
-          url: `https://www.rika-firenet.com/api/client/${stoveID}/status`,
-        },
-        (error, response, body) => {
-          if (response.statusCode == 200 && body.indexOf(stoveID) > -1) {
-            // request successful
-            this.log.info(`${response.statusCode} - API-Connection sucessful`);
+                    //set objects and values if correct data come in
+                    if (content.lastConfirmedRevision) {
+                        this.setStoveStates(
+                            "name",
+                            "state",
+                            "",
+                            true,
+                            false,
+                            content.name,
+                        );
+                        this.setStoveStates(
+                            "stoveID",
+                            "state",
+                            "",
+                            true,
+                            false,
+                            content.stoveID,
+                        );
+                        this.setStoveStates(
+                            "lastSeenMinutes",
+                            "state",
+                            "",
+                            true,
+                            false,
+                            content.lastSeenMinutes,
+                        );
+                        this.setStoveStates(
+                            "lastConfirmedRevision",
+                            "state",
+                            "",
+                            true,
+                            false,
+                            content.lastConfirmedRevision,
+                        );
+                        this.setStoveStates(
+                            "stoveType",
+                            "state",
+                            "",
+                            true,
+                            false,
+                            content.stoveType,
+                        );
+                        this.setStoveStates("oem", "state", "", true, false, content.oem);
 
-            //kick out adaptername, id, device and other stuff from string
-            const cleanControlname = controlname.split(".").slice(4).join(".");
-            this.log.info(`${cleanControlname} = ${controlvalue}`);
+                        //create channels
+                        this.setStoveStates("controls", "channel", "", false, false, "");
+                        this.setStoveStates("sensors", "channel", "", false, false, "");
+                        this.setStoveStates(
+                            "stoveFeatures",
+                            "channel",
+                            "",
+                            false,
+                            false,
+                            "",
+                        );
 
-            var json = JSON.parse(body);
-            const content = json;
+                        //create and/or update states in controls, sensors and stoveFeatures
+                        for (let [key, value] of Object.entries(content.controls)) {
+                            this.setStoveStates(
+                                `controls.${key}`,
+                                "state",
+                                "",
+                                true,
+                                true,
+                                value,
+                            );
+                        }
+                        for (let [key, value] of Object.entries(content.sensors)) {
+                            this.setStoveStates(
+                                `sensors.${key}`,
+                                "state",
+                                "",
+                                true,
+                                false,
+                                value,
+                            );
+                        }
+                        for (let [key, value] of Object.entries(content.stoveFeatures)) {
+                            this.setStoveStates(
+                                `stoveFeatures.${key}`,
+                                "state",
+                                "",
+                                true,
+                                false,
+                                value,
+                            );
+                        }
+                    } else {
+                        this.log.error(
+                            `Malformed json: ${JSON.stringify(response.data)}`,
+                        );
+                    }
 
-            //change value in content.controls
-            content.controls[cleanControlname] = controlvalue;
-
-            //send modified json to server (todo: make shure, that only one action at the same time is fired up in Blockly)
-            //const response2 = await axios.post(apiserver + '/api/client/' + stoveID + '/controls', content.controls, { jar: cookieJar, withCredentials: true })
-
-            //test
-            this.log.info(JSON.stringify(content.controls));
-
-            request.post(
-              {
-                url: `https://www.rika-firenet.com/api/client/${
-                  stoveID
-                }/controls`,
-                json: content.controls,
-              },
-              (_error, _response, _body) => {
-                //this.log.info('Body: ' + body);
-                /* if (body.indexOf("summary") > -1) {// login successful
-
-									this.log.info("Web-Login successful");
-
-									//get values, if login successful
-									this.getstoveValues();
-								}
-								else {
-									this.log.error("Web-Login NOT successful");
-								} */
-              },
-            );
-          } else {
-            this.log.error("get data not successful");
-          }
-        },
-      );
-    } catch (e) {
-      this.log.error(`setstoveValues: ${e.message}`);
+                    //call getstoveValues() every 1 minute
+                    clearTimeout(this.timeout);
+                    this.timeout = setTimeout(
+                        () => this.getstoveValues(),
+                        this.config.myinterval * 60000,
+                    );
+                } else {
+                    //login failed
+                    this.log.error("get data not successful");
+                }
+            } catch (error) {
+                this.log.error(`getstoveValues error: ${error}`);
+            }
+        } else {
+            this.log.debug("change in progress: try to getstoveValues() next time");
+        }
     }
-    //set free
-    changeInProgress = false;
-  }
 
-  /**
-   * Is called when adapter shuts down - callback has to be called under any circumstances!
-   *
-   * @param callback
-   */
-  onUnload(callback) {
-    try {
-      // Here you must clear all timeouts or intervals that may still be active
-      // clearTimeout(timeout1);
-      // clearTimeout(timeout2);
-      // ...
-      // clearInterval(interval1);
-      //clearTimeout(this.TimeoutID);
-      clearTimeout(this.TimeoutID);
+    async setstoveValues(controlname, controlvalue) {
+        //set true, to not run getstoveValues() at this time
+        this.changeInProgress = true;
 
-      callback();
-    } catch {
-      callback();
+        var stoveID = this.config.mystoveid;
+        var header = requestHeader;
+
+        try {
+            header['Cookie'] = this.sessionId;
+            const response = await axios.get(`${baseUrl}/api/client/${stoveID}/status`, { headers: header });
+
+            if (response.status == 200 && response.data.indexOf(stoveID) > -1) {
+                // request successful
+                this.log.debug(`${response.status} - API-Connection successful`);
+
+                //kick out adaptername, id, device and other stuff from string
+                const cleanControlname = controlname.split(".").slice(4).join(".");
+                this.log.debug(`${cleanControlname} = ${controlvalue}`);
+
+                const content = response.data;
+
+                //change value in content.controls
+                content.controls[cleanControlname] = controlvalue;
+
+                //send modified json to server
+                await axios.post(`${baseUrl}/api/client/${stoveID}/controls`, content.controls, { headers: header });
+
+                this.log.debug(JSON.stringify(content.controls));
+            } else {
+                this.log.error("get data not successful");
+            }
+        } catch (error) {
+            this.log.error(`setstoveValues error: ${error}`);
+        }
+
+        //set free
+        this.changeInProgress = false;
     }
-  }
 
-  // If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-  // You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-  /**
-   * Is called if a subscribed object changes
-   *
-   * @param id
-   * @param obj
-   */
-  onObjectChange(id, obj) {
-    if (obj) {
-      // The object was changed
-      this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-    } else {
-      // The object was deleted
-      this.log.info(`object ${id} deleted`);
+    /**
+     * Is called when adapter shuts down - callback has to be called under any circumstances!
+     *
+     * @param callback
+     */
+    async onUnload(callback) {
+        try {
+            await this.setState('info.connection', { val: false, ack: true });
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
+             callback();
+        } catch {
+            callback();
+        }
     }
-  }
 
-  /**
-   * Is called if a subscribed state changes
-   *
-   * @param id
-   * @param state
-   */
-  onStateChange(id, state) {
-    if (state && !state.ack) {
-      //if (state) {
-      // The state was changed
-      this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-      this.setstoveValues(id, state.val);
-    } //else {
-    // The state was deleted
-    //this.log.info(`state ${id} deleted`);
-    //}
-  }
+    /**
+     * Is called if a subscribed object changes
+     *
+     * @param id
+     * @param obj
+     */
+    onObjectChange(id, obj) {
+        if (obj) {
+            // The object was changed
+            this.log.debug(`object ${id} changed: ${JSON.stringify(obj)}`);
+        } else {
+            // The object was deleted
+            this.log.debug(`object ${id} deleted`);
+        }
+    }
 
-  // If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
-  // /**
-  //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-  //  * Using this method requires "common.messagebox" property to be set to true in io-package.json
-  //  * @param {ioBroker.Message} obj
-  //  */
-  // onMessage(obj) {
-  // 	if (typeof obj === "object" && obj.message) {
-  // 		if (obj.command === "send") {
-  // 			// e.g. send email or pushover or whatever
-  // 			this.log.info("send command");
-
-  // 			// Send response in callback if required
-  // 			if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
-  // 		}
-  // 	}
-  // }
+    /**
+     * Is called if a subscribed state changes
+     *
+     * @param id
+     * @param state
+     */
+    onStateChange(id, state) {
+        if (state && !state.ack) {
+            // The state was changed
+            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            this.setstoveValues(id, state.val);
+        }
+    }
 }
 
-if (module.parent) {
-  // Export the constructor in compact mode
-  /**
-   * @param [options]
-   */
-  module.exports = (options) => new RikaFirenet(options);
+if (require.main !== module) {
+    // Export the constructor in compact mode
+    /**
+     * @param [options]
+     */
+    module.exports = options => new RikaFirenet(options);
 } else {
-  // otherwise start the instance directly
-  new RikaFirenet();
+    // otherwise start the instance directly
+    new RikaFirenet();
 }
