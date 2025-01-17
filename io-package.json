@@ -16,7 +16,6 @@
 				"zh-cn": "首次出版"
 			}
 		},
-		"title": "Rika-Firenet",
 		"titleLang": {
 			"en": "Rika-Firenet",
 			"de": "Rika-Firenet",
@@ -42,7 +41,9 @@
 			"zh-cn": "Control your RIKA stove"
 		},
 		"authors": [
-			"xsawa32 <a.wass@sbg.at>"
+			"xsawa32 <a.wass@sbg.at>",
+			"mcm1957 <iobroker-community-adapters@gmx.de>",
+			"iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
 		],
 		"keywords": [
 			"Rika",
@@ -55,8 +56,8 @@
 		"main": "main.js",
 		"icon": "rika-firenet.png",
 		"enabled": true,
-		"extIcon": "https://raw.githubusercontent.com/xsawa32/ioBroker.rika-firenet/master/admin/rika-firenet.png",
-		"readme": "https://github.com/xsawa32/ioBroker.rika-firenet/blob/master/README.md",
+		"extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.rika-firenet/master/admin/rika-firenet.png",
+		"readme": "https://github.com/iobroker-community-adapters/ioBroker.rika-firenet/blob/master/README.md",
 		"loglevel": "info",
 		"mode": "daemon",
 		"type": "climate-control",
@@ -66,7 +67,12 @@
 		"materialize": true,
 		"dependencies": [
 			{
-				"js-controller": ">=2.0.0"
+			  "js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=6.17.14"
 			}
 		]
 	},
