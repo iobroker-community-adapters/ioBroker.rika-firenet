@@ -171,7 +171,10 @@ class RikaFirenet extends utils.Adapter {
                       'Accept-Encoding': '*'
                     }
                 }
-                const response = await axios.get(`${baseUrl}/api/client/${this.config.mystoveid}/status`, payload);
+                const url = `${baseUrl}/api/client/${this.config.mystoveid}/status`;
+                this.log.debug('url: ' + url);
+                this.log.debug('payload: ' + JSON.stringify(payload));
+                const response = await axios.get(url, payload);
                 
                 this.log.debug(`${response.status} - API-Connection successful`);
  
