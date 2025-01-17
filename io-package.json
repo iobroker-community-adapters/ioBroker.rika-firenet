@@ -1,110 +1,122 @@
 {
-	"common": {
-		"name": "rika-firenet",
-		"version": "0.0.8",
-		"news": {
-			"0.0.6": {
-				"en": "update README",
-				"de": "Aktualisierung README",
-				"ru": "Начальная версия",
-				"pt": "lançamento inicial",
-				"nl": "Eerste uitgave",
-				"fr": "Première version",
-				"it": "Versione iniziale",
-				"es": "Versión inicial",
-				"pl": "Pierwsze wydanie",
-				"zh-cn": "首次出版"
-			}
+    "common": {
+        "name": "rika-firenet",
+        "version": "0.0.8",
+        "news": {
+            "0.0.6": {
+                "en": "update README",
+                "de": "Aktualisierung README",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版",
+                "uk": "оновити README"
+            }
+        },
+        "titleLang": {
+            "en": "Rika-Firenet",
+            "de": "Rika-Firenet",
+            "ru": "Rika-Firenet",
+            "pt": "Rika-Firenet",
+            "nl": "Rika-Firenet",
+            "fr": "Rika-Firenet",
+            "it": "Rika-Firenet",
+            "es": "Rika-Firenet",
+            "pl": "Rika-Firenet",
+            "zh-cn": "Rika-Firenet",
+            "uk": "Ріка-Фіренет"
+        },
+        "desc": {
+            "en": "Control your RIKA stove",
+            "de": "Steuere deinen RIKA Ofen",
+            "ru": "Control your RIKA stove",
+            "pt": "Control your RIKA stove",
+            "nl": "Control your RIKA stove",
+            "fr": "Control your RIKA stove",
+            "it": "Control your RIKA stove",
+            "es": "Control your RIKA stove",
+            "pl": "Control your RIKA stove",
+            "zh-cn": "Control your RIKA stove",
+            "uk": "Керуйте своєю плитою RIKA"
+        },
+        "authors": [
+            "xsawa32 <a.wass@sbg.at>",
+            "mcm1957 <iobroker-community-adapters@gmx.de>",
+            "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
+        ],
+        "keywords": [
+            "Rika",
+            "Firenet",
+            "Stove",
+            "Pelletofen"
+        ],
+		"licenseInformation": {
+			"license": "MIT",
+			"type": "free"
 		},
-		"titleLang": {
-			"en": "Rika-Firenet",
-			"de": "Rika-Firenet",
-			"ru": "Rika-Firenet",
-			"pt": "Rika-Firenet",
-			"nl": "Rika-Firenet",
-			"fr": "Rika-Firenet",
-			"it": "Rika-Firenet",
-			"es": "Rika-Firenet",
-			"pl": "Rika-Firenet",
-			"zh-cn": "Rika-Firenet"
-		},
-		"desc": {
-			"en": "Control your RIKA stove",
-			"de": "Steuere deinen RIKA Ofen",
-			"ru": "Control your RIKA stove",
-			"pt": "Control your RIKA stove",
-			"nl": "Control your RIKA stove",
-			"fr": "Control your RIKA stove",
-			"it": "Control your RIKA stove",
-			"es": "Control your RIKA stove",
-			"pl": "Control your RIKA stove",
-			"zh-cn": "Control your RIKA stove"
-		},
-		"authors": [
-			"xsawa32 <a.wass@sbg.at>",
-			"mcm1957 <iobroker-community-adapters@gmx.de>",
-			"iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
-		],
-		"keywords": [
-			"Rika",
-			"Firenet",
-			"Stove",
-			"Pelletofen"
-		],
-		"license": "MIT",
 		"platform": "Javascript/Node.js",
-		"main": "main.js",
-		"icon": "rika-firenet.png",
-		"enabled": true,
-		"extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.rika-firenet/master/admin/rika-firenet.png",
-		"readme": "https://github.com/iobroker-community-adapters/ioBroker.rika-firenet/blob/master/README.md",
-		"loglevel": "info",
-		"mode": "daemon",
-		"type": "climate-control",
-		"compact": true,
-		"connectionType": "cloud",
-		"dataSource": "poll",
-		"materialize": true,
-		"dependencies": [
-			{
-			  "js-controller": ">=6.0.11"
-			}
-		],
-		"globalDependencies": [
-			{
-				"admin": ">=6.17.14"
-			}
-		]
-	},
-	"native": {
-		"myuser": "",
-		"mypassword": "",
-		"mystoveid": "",
-		"myinterval": "1"
-		
-	},
-	"objects": [],
-	"instanceObjects": [
-		{
-			"_id": "info",
-			"type": "channel",
-			"common": {
-				"name": "Information"
-			},
-			"native": {}
-		},
-		{
-			"_id": "info.connection",
-			"type": "state",
-			"common": {
-				"role": "indicator.connected",
-				"name": "Device or service connected",
-				"type": "boolean",
-				"read": true,
-				"write": false,
-				"def": false
-			},
-			"native": {}
-		}
-	]
+        "main": "main.js",
+        "icon": "rika-firenet.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.rika-firenet/master/admin/rika-firenet.png",
+        "readme": "https://github.com/iobroker-community-adapters/ioBroker.rika-firenet/blob/master/README.md",
+        "loglevel": "info",
+		"tier": 2,
+        "mode": "daemon",
+        "type": "climate-control",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=6.17.14"
+            }
+        ]
+    },
+    "native": {
+        "myuser": "",
+        "mypassword": "",
+        "mystoveid": "",
+        "myinterval": "1"
+    },
+    "encryptedNative": [
+        "mypassword"
+    ],
+    "protectedNative": [
+        "mypassword"
+    ],
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }
