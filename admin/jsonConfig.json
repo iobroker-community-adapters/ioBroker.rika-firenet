@@ -1,0 +1,46 @@
+{
+	"i18n": true,
+	"type": "panel",
+	"items": {
+		"myuser":  {
+			"type": "text",
+			"label": "myuser",
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"mypassword":  {
+			"type": "password",
+			"label": "mypassword",
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"mystoveid": {
+			"type": "text",
+			"label": "myuser",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"myinterval": {
+			"type": "number",
+			"label": "myinterval",
+			"default": 1,
+			"min": 1,
+			"max": 3600,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		}
+	}
+}

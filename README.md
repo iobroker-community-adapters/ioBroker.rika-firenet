@@ -86,9 +86,10 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### 1.0.0-alpha.0 (2025-01-17)
+### **WORK IN PROGRESS**
 
 * (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
+* (mcm1957) AdminUI has been migrated to jsonConfig to meet responsive design guide.
 * (mcm1957) Adapter requires node.js 20, js-controller 6 and and admin 6 now.
 * (mcm1957) Adapter has been move to iobroker-community-adapters organization
 * (mcm1957) Dependencies have been updated
