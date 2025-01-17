@@ -5,7 +5,6 @@
 ![Number of Installations (latest)](http://iobroker.live/badges/rika-firenet-installed.svg)
 ![Number of Installations (stable)](http://iobroker.live/badges/rika-firenet-stable.svg)
 [![Dependency Status](https://img.shields.io/david/xsawa32/iobroker.rika-firenet.svg)](https://david-dm.org/xsawa32/iobroker.rika-firenet)
-[![Known Vulnerabilities](https://snyk.io/test/github/xsawa32/ioBroker.rika-firenet/badge.svg)](https://snyk.io/test/github/xsawa32/ioBroker.rika-firenet)
 
 [![NPM](https://nodei.co/npm/iobroker.rika-firenet.png?downloads=true)](https://nodei.co/npm/iobroker.rika-firenet/)
 
