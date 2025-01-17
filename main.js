@@ -167,16 +167,21 @@ class RikaFirenet extends utils.Adapter {
 
     async getstoveValues(header, cookie) {
         if (!this.changeInProgress) {
-            var stoveID = this.config.mystoveid;
-
             try {
-                header['Cookie'] = cookie;
-                this.log.debug(`header: ${header}`);
-                const response = await axios.get(`${baseUrl}/api/client/${stoveID}/status`, { headers: header });
+                const payload = {
+                    method: 'get',
+                    maxBodyLength: Infinity,
+                    url: `${baseUrl}/api/client/${this.config.mystoveid}/status`,
+                    headers: { 
+                      'Cookie': cookie, 
+                      'Accept-Encoding': '*'
+                    }
+                                  }
+                const response = await axios.request(payload);
 
                 this.log.debug(`${response.status} - API-Connection successful`);
  
-                if (response.status == 200 && response.data.indexOf(stoveID) > -1) {
+                if (response.status == 200 && response.data.indexOf(this.config.mystoveid) > -1) {
                     // request successful
                     this.setState("info.connection", true, true);
                     const content = response.data;
