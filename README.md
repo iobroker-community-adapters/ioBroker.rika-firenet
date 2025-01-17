@@ -77,21 +77,49 @@ use if sensors.statusMainState = 20 or 21 (Operation with wood-logs, Scheitholzb
 * setting more than 1 state at the same time with javascript or blockly
 * save password encrypted
 
+## Credits
+
+This adapter would not have been possible without the great work of @xsawa32 (https://github.com/xsawa32), who created pre V1.x.x releases of this adapter.
+
 ## Changelog
+<!--
+	Placeholder for the next version (at the beginning of the line):
+    ### **WORK IN PROGRESS**
+-->
+
+### **WORK IN PROGRESS**
+
+* (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
+* (mcm1957) Adapter requires node.js 20, js-controller 6 and and admin 6 now.
+* (mcm1957) Adapter has been move to iobroker-community-adapters organization
+* (mcm1957) Dependencies have been updated
 
 ### 0.0.8
+
 * (xsawa32) switched back to request instead of axios with axios-cookiejar-support, because of missing dependencies in axios.package.json
+
 ### 0.0.7
+
 * (xsawa32) changed create device and objects in main.js
+
 ### 0.0.6
+
 * (xsawa32) changed from request to axios
+
 ### 0.0.5
+
 * (xsawa32) some changes in README
+
 ### 0.0.4
+
 * (xsawa32) some changes in main.js
+
 ### 0.0.3
+
 * (xsawa32) some changes in main.js
+
 ### 0.0.1
+
 * (xsawa32) initial release
 
 ## License
