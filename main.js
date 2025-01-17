@@ -69,12 +69,12 @@ class RikaFirenet extends utils.Adapter {
     async onReady() {
         // Initialize your adapter here
 
-        this.isReady = true;
-        this.sessionId = (await this.webLogin(this.config.myuser, this.config.mypassword) || '');
-        this.isConnected = this.sessionId !== '';
-
-        // Reset the connection indicator during startup
-        this.setState("info.connection", false, true);
+        if (!this.config.mystoveid) {
+            this.log.error(
+                `stove id is invalid - please correct and restart adapter.`,
+            );
+            return;
+        }
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
@@ -82,13 +82,6 @@ class RikaFirenet extends utils.Adapter {
         this.log.info(`config user: ${this.config.myuser}`);
         this.log.info(`config interval: ${this.config.myinterval}`);
         this.log.info(`config stoveid: ${this.config.mystoveid}`);
-
-        if (!this.config.mystoveid) {
-            this.log.error(
-                `stove id is invalid - please correct and restart adapter.`,
-            );
-            return;
-        }
 
         //create device
         this.setObjectNotExists(this.config.mystoveid, {
@@ -99,9 +92,13 @@ class RikaFirenet extends utils.Adapter {
             native: {},
         });
 
+        this.isReady = true;
+        this.sessionId = await this.webLogin(this.config.myuser, this.config.mypassword) || '';
+        this.isConnected = this.sessionId !== '';
+
         // read values for stove first time
         if (this.isConnected) { 
-            this.getstoveValues(requestHeader, this.sessionId);
+            this.getstoveValues();
         }
 
     }
@@ -165,7 +162,7 @@ class RikaFirenet extends utils.Adapter {
         }
     }
 
-    async getstoveValues(header, cookie) {
+    async getstoveValues() {
         if (!this.changeInProgress) {
             try {
                 const payload = {
@@ -173,10 +170,11 @@ class RikaFirenet extends utils.Adapter {
                     maxBodyLength: Infinity,
                     url: `${baseUrl}/api/client/${this.config.mystoveid}/status`,
                     headers: { 
-                      'Cookie': cookie, 
+                      'Cookie': this.sessionId, 
                       'Accept-Encoding': '*'
                     }
                 }
+                this.log.debug(JSON.stringify(payload));
                 const response = await axios.request(payload);
 
                 this.log.debug(`${response.status} - API-Connection successful`);
