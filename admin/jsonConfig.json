@@ -22,7 +22,7 @@
 		},
 		"mystoveid": {
 			"type": "text",
-			"label": "myuser",
+			"label": "mystoveid",
 			"newLine": true,
 			"xs": 12,
 			"sm": 12,
