@@ -5,7 +5,6 @@
 ![Number of Installations (latest)](http://iobroker.live/badges/rika-firenet-installed.svg)
 ![Number of Installations (stable)](http://iobroker.live/badges/rika-firenet-stable.svg)
 [![Dependency Status](https://img.shields.io/david/xsawa32/iobroker.rika-firenet.svg)](https://david-dm.org/xsawa32/iobroker.rika-firenet)
-[![Known Vulnerabilities](https://snyk.io/test/github/xsawa32/ioBroker.rika-firenet/badge.svg)](https://snyk.io/test/github/xsawa32/ioBroker.rika-firenet)
 
 [![NPM](https://nodei.co/npm/iobroker.rika-firenet.png?downloads=true)](https://nodei.co/npm/iobroker.rika-firenet/)
 
@@ -98,6 +97,7 @@ use if sensors.statusMainState = 20 or 21 (Operation with wood-logs, Scheitholzb
 ## License
 MIT License
 
+Copyright (c) 2024-2025, iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
 Copyright (c) 2020 Andreas Wass
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
