@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.1 (2025-01-17)
 
 * (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
 * (mcm1957) AdminUI has been migrated to jsonConfig to meet responsive design guide.
