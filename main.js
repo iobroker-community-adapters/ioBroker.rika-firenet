@@ -70,7 +70,7 @@ class RikaFirenet extends utils.Adapter {
         // Initialize your adapter here
 
         this.isReady = true;
-        this.sessionId = (await this.webLogin(this.config.myuser, this.config.mypassword)) || '';
+        this.sessionId = (await this.webLogin(this.config.myuser, this.config.mypassword) || '');
         this.isConnected = this.sessionId !== '';
 
         // Reset the connection indicator during startup
@@ -98,6 +98,11 @@ class RikaFirenet extends utils.Adapter {
             },
             native: {},
         });
+
+        // read values for stove first time
+        if (this.isConnected) { 
+            this.getstoveValues(requestHeader, this.sessionId);
+        }
 
     }
 
@@ -149,8 +154,6 @@ class RikaFirenet extends utils.Adapter {
                     this.log.info('Logged in to rika firenet');
                     const sessionId = cookie.toString().split(';')[0];
                     this.log.debug(`Session-ID: ${sessionId}`);
-                    //get values, if login successful
-                    this.getstoveValues(requestHeader, sessionId);
                     return sessionId;
                 }
                 throw new Error('Login failed. No session id received');
