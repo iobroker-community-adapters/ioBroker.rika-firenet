@@ -53,9 +53,10 @@ class RikaFirenet extends utils.Adapter {
 		this.log.info("config stoveid: " + this.config.mystoveid);
 
 		if (!this.config.mystoveid) {
-			console.log (`stobe id is invalid - cannot continue`);
-			this.terminate();
+			this.log.error (`stove id is invalid - please correct and restart adapter.`);
+			return;
 		}
+
 		//create device
 		this.setObjectNotExists(this.config.mystoveid, {
 			type: "device",
