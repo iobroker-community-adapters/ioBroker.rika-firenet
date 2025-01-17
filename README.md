@@ -86,8 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.0 (2025-01-17)
 
 * (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
 * (mcm1957) Adapter requires node.js 20, js-controller 6 and and admin 6 now.
@@ -109,18 +108,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ### 0.0.5
 
 * (xsawa32) some changes in README
-
-### 0.0.4
-
-* (xsawa32) some changes in main.js
-
-### 0.0.3
-
-* (xsawa32) some changes in main.js
-
-### 0.0.1
-
-* (xsawa32) initial release
 
 ## License
 MIT License

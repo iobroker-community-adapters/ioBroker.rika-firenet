@@ -1,122 +1,135 @@
 {
-    "common": {
-        "name": "rika-firenet",
-        "version": "0.0.8",
-        "news": {
-            "0.0.6": {
-                "en": "update README",
-                "de": "Aktualisierung README",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版",
-                "uk": "оновити README"
-            }
-        },
-        "titleLang": {
-            "en": "Rika-Firenet",
-            "de": "Rika-Firenet",
-            "ru": "Rika-Firenet",
-            "pt": "Rika-Firenet",
-            "nl": "Rika-Firenet",
-            "fr": "Rika-Firenet",
-            "it": "Rika-Firenet",
-            "es": "Rika-Firenet",
-            "pl": "Rika-Firenet",
-            "zh-cn": "Rika-Firenet",
-            "uk": "Ріка-Фіренет"
-        },
-        "desc": {
-            "en": "Control your RIKA stove",
-            "de": "Steuere deinen RIKA Ofen",
-            "ru": "Control your RIKA stove",
-            "pt": "Control your RIKA stove",
-            "nl": "Control your RIKA stove",
-            "fr": "Control your RIKA stove",
-            "it": "Control your RIKA stove",
-            "es": "Control your RIKA stove",
-            "pl": "Control your RIKA stove",
-            "zh-cn": "Control your RIKA stove",
-            "uk": "Керуйте своєю плитою RIKA"
-        },
-        "authors": [
-            "xsawa32 <a.wass@sbg.at>",
-            "mcm1957 <iobroker-community-adapters@gmx.de>",
-            "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
-        ],
-        "keywords": [
-            "Rika",
-            "Firenet",
-            "Stove",
-            "Pelletofen"
-        ],
-		"licenseInformation": {
-			"license": "MIT",
-			"type": "free"
-		},
-		"platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "rika-firenet.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.rika-firenet/master/admin/rika-firenet.png",
-        "readme": "https://github.com/iobroker-community-adapters/ioBroker.rika-firenet/blob/master/README.md",
-        "loglevel": "info",
-		"tier": 2,
-        "mode": "daemon",
-        "type": "climate-control",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "materialize": true,
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=6.17.14"
-            }
-        ]
+  "common": {
+    "name": "rika-firenet",
+    "version": "1.0.0-alpha.0",
+    "news": {
+      "1.0.0-alpha.0": {
+        "en": "BREAKING: password is stored encrypted now, please reenter once.\nAdapter requires node.js 20, js-controller 6 and and admin 6 now.\nAdapter has been move to iobroker-community-adapters organization\nDependencies have been updated",
+        "de": "BREAKING: Passwort wird jetzt verschlüsselt gespeichert, bitte reenter einmal.\nAdapter benötigt jetzt node.js 20, js-controller 6 und admin 6.\nAdapter wurde auf iobroker-community-Adapter Organisation verschoben\nAbhängigkeiten wurden aktualisiert",
+        "ru": "Пароль хранится зашифрованным сейчас, пожалуйста, возвращайтесь один раз.\nAdapter requires node.js 20, js-controller 6 and admin 6 now.\nАдаптер перешел в организацию iobroker-community-adapters\nЗависимость обновлена",
+        "pt": "BREAKING: a senha é armazenada criptografada agora, por favor reenter uma vez.\nAdaptador requer node.js 20, js-controller 6 e admin 6 agora.\nAdapter foi transferido para iobroker-community-adapters organização\nAs dependências foram atualizadas",
+        "nl": "Wachtwoord is nu versleuteld opgeslagen.\nAdapter vereist node.js 20, js-controller 6 en admin 6.\nAdapter is verplaatst naar iobroker-community-adapters organisatie\nAfhankelijkheden zijn bijgewerkt",
+        "fr": "Le mot de passe est maintenant crypté, s'il vous plaît réentrez une fois.\nAdaptateur nécessite node.js 20, js-controller 6 et admin 6 maintenant.\nAdaptateur a été transféré à iobroker-community-adaptateurs organisation\nLes dépendances ont été actualisées",
+        "it": "BREAKING: la password viene memorizzata ora crittografata, si prega di rientrare una volta.\nAdattatore richiede node.js 20, js-controller 6 e admin 6 ora.\nL'adattatore è stato spostato all'organizzazione iobroker-community-adapters\nLe dipendenze sono state aggiornate",
+        "es": "BREAKING: contraseña se almacena encriptada ahora, por favor reingrese una vez.\nAdaptador requiere node.js 20, js-controller 6 y admin 6 ahora.\nAdaptador ha sido trasladado a la organización de ibroker-community-adapters\nSe han actualizado las dependencias",
+        "pl": "BREAKING: hasło jest teraz przechowywane zaszyfrowane, proszę wprowadzić ponownie raz.\nAdapter wymaga node.js 20, js- kontroler 6 i admin 6 teraz.\nAdapter został przeniesiony do organizacji adapterów iobroker- community\nZaktualizowano zależności",
+        "uk": "BREAKING: пароль зберігається зашифровано зараз, будь ласка, повторно.\nАдаптер вимагає node.js 20, js-controller 6 і admin 6 тепер.\nПерехід на iobroker-community-adapters\nЗалежність було оновлено",
+        "zh-cn": "密码是加密的 请再输入一次.\n适配器需要节点.js 20,js控制器 6和现在的管理员 6.\n适应者被转移到了职业经纪人-社区适应者组织\n依赖关系已更新"
+      },
+      "0.0.6": {
+        "en": "update README",
+        "de": "Aktualisierung README",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版",
+        "uk": "оновити README"
+      }
     },
-    "native": {
-        "myuser": "",
-        "mypassword": "",
-        "mystoveid": "",
-        "myinterval": "1"
+    "titleLang": {
+      "en": "Rika-Firenet",
+      "de": "Rika-Firenet",
+      "ru": "Rika-Firenet",
+      "pt": "Rika-Firenet",
+      "nl": "Rika-Firenet",
+      "fr": "Rika-Firenet",
+      "it": "Rika-Firenet",
+      "es": "Rika-Firenet",
+      "pl": "Rika-Firenet",
+      "zh-cn": "Rika-Firenet",
+      "uk": "Ріка-Фіренет"
     },
-    "encryptedNative": [
-        "mypassword"
+    "desc": {
+      "en": "Control your RIKA stove",
+      "de": "Steuere deinen RIKA Ofen",
+      "ru": "Control your RIKA stove",
+      "pt": "Control your RIKA stove",
+      "nl": "Control your RIKA stove",
+      "fr": "Control your RIKA stove",
+      "it": "Control your RIKA stove",
+      "es": "Control your RIKA stove",
+      "pl": "Control your RIKA stove",
+      "zh-cn": "Control your RIKA stove",
+      "uk": "Керуйте своєю плитою RIKA"
+    },
+    "authors": [
+      "xsawa32 <a.wass@sbg.at>",
+      "mcm1957 <iobroker-community-adapters@gmx.de>",
+      "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
     ],
-    "protectedNative": [
-        "mypassword"
+    "keywords": [
+      "Rika",
+      "Firenet",
+      "Stove",
+      "Pelletofen"
     ],
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "rika-firenet.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.rika-firenet/master/admin/rika-firenet.png",
+    "readme": "https://github.com/iobroker-community-adapters/ioBroker.rika-firenet/blob/master/README.md",
+    "loglevel": "info",
+    "tier": 2,
+    "mode": "daemon",
+    "type": "climate-control",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "materialize": true,
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.17.14"
+      }
     ]
+  },
+  "native": {
+    "myuser": "",
+    "mypassword": "",
+    "mystoveid": "",
+    "myinterval": "1"
+  },
+  "encryptedNative": [
+    "mypassword"
+  ],
+  "protectedNative": [
+    "mypassword"
+  ],
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
