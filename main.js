@@ -13,10 +13,10 @@ const baseUrl = 'https://www.rika-firenet.com';
 const userAgent =
     'Mozilla/5.0 (iPhone13,2; U; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/15E148 Safari/602.1';
 const requestHeader = {
-    'Content-Type': 'application/json',
-    'accept-encoding': '*',
-    Accept: 'application/json',
-    'User-Agent': userAgent
+    'Accept-Encoding': '*',
+    'Accept': '*/*',
+    'User-Agent': userAgent,
+    'Connection': 'keep-alive'
 };
 
 class RikaFirenet extends utils.Adapter {
@@ -152,7 +152,8 @@ class RikaFirenet extends utils.Adapter {
                 const cookie = response.headers['set-cookie'];
                 if (cookie) {
                     this.log.info('Logged in to rika firenet');
-                    const sessionId = cookie.toString().split(';')[0].replace('connect.sid=', '');
+                    let sessionId = cookie.toString().split(';')[0];
+                    sessionId = sessionId.replace('connect.sid=', '');
                     this.log.debug(`Session-ID: ${sessionId}`);
                     return sessionId;
                 }
