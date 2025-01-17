@@ -98,7 +98,7 @@ class RikaFirenet extends utils.Adapter {
 
         // read values for stove first time
         if (this.isConnected) { 
-            this.getstoveValues();
+            this.getStoveValues();
         }
 
     }
@@ -162,21 +162,17 @@ class RikaFirenet extends utils.Adapter {
         }
     }
 
-    async getstoveValues() {
+    async getStoveValues() {
         if (!this.changeInProgress) {
             try {
                 const payload = {
-                    method: 'get',
-                    maxBodyLength: Infinity,
-                    url: `${baseUrl}/api/client/${this.config.mystoveid}/status`,
                     headers: { 
                       'Cookie': this.sessionId, 
                       'Accept-Encoding': '*'
                     }
                 }
-                this.log.debug(JSON.stringify(payload));
-                const response = await axios.request(payload);
-
+                const response = await axios.get(`${baseUrl}/api/client/${this.config.mystoveid}/status`, payload);
+                
                 this.log.debug(`${response.status} - API-Connection successful`);
  
                 if (response.status == 200 && response.data.indexOf(this.config.mystoveid) > -1) {
@@ -280,7 +276,7 @@ class RikaFirenet extends utils.Adapter {
                     //call getstoveValues() every 1 minute
                     clearTimeout(this.timeout);
                     this.timeout = setTimeout(
-                        () => this.getstoveValues(),
+                        () => this.getStoveValues(),
                         this.config.myinterval * 60000,
                     );
                 } else {
