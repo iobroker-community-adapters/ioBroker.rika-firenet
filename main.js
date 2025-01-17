@@ -152,7 +152,7 @@ class RikaFirenet extends utils.Adapter {
                 const cookie = response.headers['set-cookie'];
                 if (cookie) {
                     this.log.info('Logged in to rika firenet');
-                    const sessionId = cookie.toString().split(';')[0];
+                    const sessionId = cookie.toString().split(';')[0].replace('connect.sid=', '');
                     this.log.debug(`Session-ID: ${sessionId}`);
                     return sessionId;
                 }
@@ -170,6 +170,7 @@ class RikaFirenet extends utils.Adapter {
 
             try {
                 header['Cookie'] = cookie;
+                this.log.debug(`header: ${header}`);
                 const response = await axios.get(`${baseUrl}/api/client/${stoveID}/status`, { headers: header });
 
                 this.log.debug(`${response.status} - API-Connection successful`);
