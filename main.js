@@ -168,7 +168,7 @@ class RikaFirenet extends utils.Adapter {
             try {
                 const payload = {
                     headers: { 
-                      'Cookie': this.sessionId, 
+                      'Cookie': `${this.sessionId}; connect.sid=${this.sessionId}`, 
                       'Accept-Encoding': '*'
                     }
                 }
