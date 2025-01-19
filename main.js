@@ -74,6 +74,8 @@ class RikaFirenet extends utils.Adapter {
                 'Invalid configuration. Please provide "stoveid", "user" and "password" in the adapter settings!',
             );
             return;
+        } else if (!this.config.mystoveid.match(/^[a-zA-Z0-9]+$/)) {
+            this.log.info('Invalid stove id. Please provide a valid stove id in the adapter settings!');
         }
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
