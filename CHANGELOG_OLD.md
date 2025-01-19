@@ -1,4 +1,8 @@
 # Older Changelogs
+## 0.0.7
+
+* (xsawa32) changed create device and objects in main.js
+
 ## 0.0.6
 
 * (xsawa32) changed from request to axios

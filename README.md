@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.3 (2025-01-19)
 * (dev2dev) Reduced writeable states
 
 ### 1.0.0-alpha.2 (2025-01-19)
@@ -109,10 +109,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ### 0.0.8
 
 * (xsawa32) switched back to request instead of axios with axios-cookiejar-support, because of missing dependencies in axios.package.json
-
-### 0.0.7
-
-* (xsawa32) changed create device and objects in main.js
 
 ## License
 MIT License

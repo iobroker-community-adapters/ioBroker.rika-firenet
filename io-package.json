@@ -1,9 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.2",
-    "version": "1.0.0-alpha.2",
+    "version": "1.0.0-alpha.3",
     "news": {
+      "1.0.0-alpha.3": {
+        "en": "Reduced writeable states",
+        "de": "Reduzierte Schreibzustände",
+        "ru": "Снижение уровня записи",
+        "pt": "Estados redutíveis reduzidos",
+        "nl": "Verlaagde schrijfbare toestanden",
+        "fr": "États écrivants réduits",
+        "it": "Riduzione degli stati scrivibili",
+        "es": "Reducir los estados escribibles",
+        "pl": "Zmniejszone stany zapisywalne",
+        "uk": "Зменшені писемні стани",
+        "zh-cn": "可写状态减少"
+      },
       "1.0.0-alpha.2": {
         "en": "Reduced writeable states\nExtended logging\nFixed writing value to stove\nChanged cookie management",
         "de": "Reduzierte Schreibzustände\nErweiterte Protokollierung\nFester Schreibwert zum Kochen\nÄnderung der Cookie-Verwaltung",
