@@ -179,13 +179,11 @@ class RikaFirenet extends utils.Adapter {
 
         this.log.debug(`${response.status} - API-Connection successful`);
 
-        if (
-          response.status == 200 &&
-          response.data.toString().indexOf(this.config.mystoveid) > -1
-        ) {
+        if (response.status == 200 && response.data) {
           // request successful
           this.setState("info.connection", true, true);
           const content = response.data;
+          this.log.debug(`content: ${JSON.stringify(content)}`);
 
           //set objects and values if correct data come in
           if (content.lastConfirmedRevision) {
