@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.1",
+    "version": "1.0.0-alpha.2",
     "news": {
+      "1.0.0-alpha.2": {
+        "en": "Fixed setting values to stove & extended logging\nChanged cookie management",
+        "de": "Feste Einstellwerte zum Herd & erweiterte Protokollierung\nÄnderung der Cookie-Verwaltung",
+        "ru": "Исправленные значения установки для укладки и расширенной регистрации\nИзменение управления печеньем",
+        "pt": "Valores de configuração fixos para o fogão & log estendido\nGestão de cookies alterada",
+        "nl": "Vaste instellingswaarden voor het uitzetten van uitgebreide logging\nCookiebeheer gewijzigd",
+        "fr": "Valeurs de réglage fixes pour le poêle et l'exploitation étendue\nGestion des cookies modifiée",
+        "it": "Valori di impostazione fissi a fornelli e registrazione estesa\nGestione dei cookie modificata",
+        "es": "Valores de ajuste fijo para la estufa & logging extendido\nGestión de las cookies cambiada",
+        "pl": "Stałe wartości ustawienia pieca i rozszerzonego logowania\nZmienione zarządzanie plikami cookie",
+        "uk": "Фіксовані значення налаштування для плити та подовженого входу\nЗміна управління файлами cookie",
+        "zh-cn": "炉灶的固定设置值和扩展日志\n更改饼干管理"
+      },
       "1.0.0-alpha.1": {
         "en": "BREAKING: password is stored encrypted now, please reenter once.\nAdminUI has been migrated to jsonConfig to meet responsive design guide.\nAdapter requires node.js 20, js-controller 6 and and admin 6 now.\nAdapter has been move to iobroker-community-adapters organization\nDependencies have been updated",
         "de": "BREAKING: Passwort wird jetzt verschlüsselt gespeichert, bitte reenter einmal.\nAdminUI wurde zu jsonConfig migriert, um responsive Design Guide zu treffen.\nAdapter benötigt jetzt node.js 20, js-controller 6 und admin 6.\nAdapter wurde auf iobroker-community-Adapter Organisation verschoben\nAbhängigkeiten wurden aktualisiert",
