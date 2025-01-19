@@ -2,6 +2,7 @@
   "common": {
     "name": "rika-firenet",
     "version": "1.0.0-alpha.2",
+    "version": "1.0.0-alpha.2",
     "news": {
       "1.0.0-alpha.2": {
         "en": "Reduced writeable states\nExtended logging\nFixed writing value to stove\nChanged cookie management",

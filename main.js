@@ -233,9 +233,11 @@ class RikaFirenet extends utils.Adapter {
         var stoveID = this.config.mystoveid;
 
         try {
-            const response = await client.get(`${baseUrl}/api/client/${stoveID}/status`);
+            const url = `${baseUrl}/api/client/${stoveID}/status`;
+            this.log.debug(`url: ${url}`);
+            const response = await client.get(url);
 
-            if (response.status == 200 && response.data.indexOf(stoveID) > -1) {
+            if (response.status == 200 && response.data) {
                 // request successful
                 this.log.debug(`${response.status} - API-Connection successful`);
 
