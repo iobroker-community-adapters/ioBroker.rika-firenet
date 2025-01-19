@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.2 (2025-01-19)
 * (dev2dev) Reduced writeable states
 * (dev2dev) Extended logging
 * (dev2dev) Fixed writing value to stove
@@ -111,14 +111,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ### 0.0.7
 
 * (xsawa32) changed create device and objects in main.js
-
-### 0.0.6
-
-* (xsawa32) changed from request to axios
-
-### 0.0.5
-
-* (xsawa32) some changes in README
 
 ## License
 MIT License
