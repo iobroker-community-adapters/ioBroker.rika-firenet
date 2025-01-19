@@ -86,6 +86,9 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (dev2dev) Bump release#
+
 ### 1.0.0-alpha.3 (2025-01-19)
 * (dev2dev) Reduced writeable states
 
