@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.4 (2025-01-19)
 * (dev2dev) Bump release#
 
 ### 1.0.0-alpha.3 (2025-01-19)
@@ -108,10 +108,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 * (mcm1957) Adapter requires node.js 20, js-controller 6 and and admin 6 now.
 * (mcm1957) Adapter has been move to iobroker-community-adapters organization
 * (mcm1957) Dependencies have been updated
-
-### 0.0.8
-
-* (xsawa32) switched back to request instead of axios with axios-cookiejar-support, because of missing dependencies in axios.package.json
 
 ## License
 MIT License

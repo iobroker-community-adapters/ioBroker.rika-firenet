@@ -1,4 +1,8 @@
 # Older Changelogs
+## 0.0.8
+
+* (xsawa32) switched back to request instead of axios with axios-cookiejar-support, because of missing dependencies in axios.package.json
+
 ## 0.0.7
 
 * (xsawa32) changed create device and objects in main.js

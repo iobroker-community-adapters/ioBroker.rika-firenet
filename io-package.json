@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.3",
+    "version": "1.0.0-alpha.4",
     "news": {
+      "1.0.0-alpha.4": {
+        "en": "Bump release#",
+        "de": "Bump release#",
+        "ru": "Bump release#",
+        "pt": "Bump release#",
+        "nl": "Bump release#",
+        "fr": "Déverrouillage #",
+        "it": "Bump release #",
+        "es": "Bump release#",
+        "pl": "Bump release #",
+        "uk": "Bump реліз#",
+        "zh-cn": "弹出#"
+      },
       "1.0.0-alpha.3": {
         "en": "Reduced writeable states",
         "de": "Reduzierte Schreibzustände",
