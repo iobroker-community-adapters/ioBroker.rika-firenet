@@ -16,6 +16,8 @@ const { wrapper } = require('axios-cookiejar-support');
 const jar = new CookieJar();
 const client = wrapper(axios.create({ jar }));
 
+const writeableStateNames = ['onOff', 'heatingPower', 'targetTemperature'];
+
 const baseUrl = 'https://www.rika-firenet.com';
 
 class RikaFirenet extends utils.Adapter {
@@ -196,7 +198,8 @@ class RikaFirenet extends utils.Adapter {
 
                         //create and/or update states in controls, sensors and stoveFeatures
                         for (let [key, value] of Object.entries(content.controls)) {
-                            this.setStoveStates(`controls.${key}`, 'state', '', true, true, value);
+                            const writeable = writeableStateNames.includes(key);
+                            this.setStoveStates(`controls.${key}`, 'state', '', true, writeable, value);
                         }
                         for (let [key, value] of Object.entries(content.sensors)) {
                             this.setStoveStates(`sensors.${key}`, 'state', '', true, false, value);
