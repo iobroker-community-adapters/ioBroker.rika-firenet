@@ -87,6 +87,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
     ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+* (dev2dev) Fixed settings values to stove & extended logging
 * (dev2dev) Changed cookie management
 
 ### 1.0.0-alpha.1 (2025-01-17)
