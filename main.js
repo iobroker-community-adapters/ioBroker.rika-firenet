@@ -181,7 +181,7 @@ class RikaFirenet extends utils.Adapter {
 
         if (
           response.status == 200 &&
-          response.data.indexOf(this.config.mystoveid) > -1
+          response.data.toString().indexOf(this.config.mystoveid) > -1
         ) {
           // request successful
           this.setState("info.connection", true, true);
