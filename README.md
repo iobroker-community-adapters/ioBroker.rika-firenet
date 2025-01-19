@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-**WORK IN PROGRESS**
+### **WORK IN PROGRESS**
 * (dev2dev) Reduced writeable states
 
 ### 1.0.0-alpha.2 (2025-01-19)
