@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.6",
     "news": {
+      "1.0.0-alpha.6": {
+        "en": "Check stoveId",
+        "de": "Prüfofen I",
+        "ru": "Проверить плиту Id",
+        "pt": "Verificar o fogão I",
+        "nl": "Check fornuis Id",
+        "fr": "Vérifiez le poêle Idée",
+        "it": "Verificare la stufa Id",
+        "es": "Estufa de control Id",
+        "pl": "Sprawdzić piec Id",
+        "uk": "Перевірка плити Ід",
+        "zh-cn": "检查炉子 编号"
+      },
       "1.0.0-alpha.5": {
         "en": "Fix adapter checker",
         "de": "Adapter-Checker fixieren",

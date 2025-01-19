@@ -1,4 +1,9 @@
 # Older Changelogs
+## 1.0.0-alpha.1 (2025-01-17)
+
+* (dev2dev) Changed http-requests from request to axios
+* (dev2dev) Added cookie management for recurring requests
+
 ## 1.0.0-alpha.0
 * (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
 * (mcm1957) AdminUI has been migrated to jsonConfig to meet responsive design guide.
