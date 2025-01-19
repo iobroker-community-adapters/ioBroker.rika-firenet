@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.4",
+    "version": "1.0.0-alpha.5",
     "news": {
+      "1.0.0-alpha.5": {
+        "en": "Fix adapter checker",
+        "de": "Adapter-Checker fixieren",
+        "ru": "Fix адаптер",
+        "pt": "Verificador de adaptador fixo",
+        "nl": "Repareren adaptercontrole",
+        "fr": "Correction du vérificateur d'adaptateur",
+        "it": "Fissare l'adattatore checker",
+        "es": "Controlador de adaptador fijo",
+        "pl": "Napraw sprawdzacz adaptera",
+        "uk": "Перевірка адаптера",
+        "zh-cn": "修补适配器检查器"
+      },
       "1.0.0-alpha.4": {
         "en": "Bump release#",
         "de": "Bump release#",
