@@ -114,7 +114,7 @@
     "myuser": "",
     "mypassword": "",
     "mystoveid": "",
-    "myinterval": "1"
+    "myinterval": 1
   },
   "encryptedNative": [
     "mypassword"

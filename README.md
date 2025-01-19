@@ -86,8 +86,15 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (dev2dev) Changed cookie management
+
 ### 1.0.0-alpha.1 (2025-01-17)
 
+* (dev2dev) Changed http-requests from request to axios
+* (dev2dev) Added cookie management for recurring requests
+
+### 1.0.0-alpha.0
 * (mcm1957) BREAKING: password is stored encrypted now, please reenter once.
 * (mcm1957) AdminUI has been migrated to jsonConfig to meet responsive design guide.
 * (mcm1957) Adapter requires node.js 20, js-controller 6 and and admin 6 now.
