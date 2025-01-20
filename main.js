@@ -9,7 +9,6 @@
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
 const { default: axios } = require('axios');
-//const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 const { CookieJar } = require('tough-cookie');
 const { wrapper } = require('axios-cookiejar-support');
@@ -41,6 +40,8 @@ class RikaFirenet extends utils.Adapter {
         this._isConnected = false;
         this.isReady = false;
         this.changeInProgress = false;
+
+        this.stateIds = []; // store all state ids to prevent creation if exists
     }
 
     /**
@@ -112,26 +113,28 @@ class RikaFirenet extends utils.Adapter {
      * @param stateWriteBool
      * @param stateValueMix
      */
-    setStoveStates(stateNameStr, stateTypeStr, stateRoleStr, stateReadBool, stateWriteBool, stateValueMix) {
-        //set object with specific datatype and value, subscribe and set value
-        this.log.debug(`setStoveStates: ${stateNameStr} - ${stateValueMix}`);
-        this.setObjectNotExists(`${this.config.mystoveid}.${stateNameStr}`, {
-            type: stateTypeStr,
-            common: {
-                name: stateNameStr,
-                type: typeof stateValueMix,
-                role: stateRoleStr,
-                read: stateReadBool,
-                write: stateWriteBool,
-            },
-            native: {},
-        });
+    async setStoveStates(stateNameStr, stateTypeStr, stateRoleStr, stateReadBool, stateWriteBool, stateValueMix) {
+        if (!this.stateIds.includes(stateNameStr)) {
+            //set object with specific datatype and value, subscribe and set value
+            await this.setObjectNotExists(`${this.config.mystoveid}.${stateNameStr}`, {
+                type: stateTypeStr,
+                common: {
+                    name: stateNameStr,
+                    type: typeof stateValueMix,
+                    role: stateRoleStr,
+                    read: stateReadBool,
+                    write: stateWriteBool,
+                },
+                native: {},
+            });
+            this.log.debug(`state ${stateNameStr} unknown - created new`);
+            this.stateIds.push(stateNameStr);
+        }
 
         //subscribe states
         this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
 
         //set states
-        this.log.debug(`set state: ${stateNameStr} - ${stateValueMix}`);
         this.setState(`${this.config.mystoveid}.${stateNameStr}`, {
             val: stateValueMix,
             ack: true,
@@ -184,6 +187,8 @@ class RikaFirenet extends utils.Adapter {
                         this.setStoveStates('name', 'state', '', true, false, content.name);
                         this.setStoveStates('stoveID', 'state', '', true, false, content.stoveID);
                         this.setStoveStates('lastSeenMinutes', 'state', '', true, false, content.lastSeenMinutes);
+                        this.setStoveStates('stoveType', 'state', '', true, false, content.stoveType);
+                        this.setStoveStates('oem', 'state', '', true, false, content.oem);
                         this.setStoveStates(
                             'lastConfirmedRevision',
                             'state',
@@ -192,8 +197,6 @@ class RikaFirenet extends utils.Adapter {
                             false,
                             content.lastConfirmedRevision,
                         );
-                        this.setStoveStates('stoveType', 'state', '', true, false, content.stoveType);
-                        this.setStoveStates('oem', 'state', '', true, false, content.oem);
 
                         //create channels
                         this.setStoveStates('controls', 'channel', '', false, false, '');
@@ -203,15 +206,12 @@ class RikaFirenet extends utils.Adapter {
                         //create and/or update states in controls, sensors and stoveFeatures
                         for (let [key, value] of Object.entries(content.controls)) {
                             const writeable = writeableStateNames.includes(key);
-                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`controls.${key}`, 'state', '', true, writeable, value);
                         }
                         for (let [key, value] of Object.entries(content.sensors)) {
-                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`sensors.${key}`, 'state', '', true, false, value);
                         }
                         for (let [key, value] of Object.entries(content.stoveFeatures)) {
-                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`stoveFeatures.${key}`, 'state', '', true, false, value);
                         }
                     } else {
