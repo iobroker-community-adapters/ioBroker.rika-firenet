@@ -41,7 +41,7 @@ use if sensors.statusMainState = 2 (Ignition, Zündung)
 https://www.rika-firenet.com/images/status/Visu_Ignition.svg
 use if sensors.statusMainState = 3 (Starting, Startphase)
 
-https://www.rika-firenet.com/images/status/Visu_Bake.svg 
+https://www.rika-firenet.com/images/status/Visu_Bake.svg
 
 https://www.rika-firenet.com/images/status/Visu_HeatingUp.svg
 
@@ -52,7 +52,7 @@ https://www.rika-firenet.com/images/status/Visu_Clean.svg
 use if sensors.statusMainState = 5 (Cleaning)
 
 https://www.rika-firenet.com/images/status/Visu_BurnOff.svg
-use if sensors.statusMainState = 6 (Burn Off, Ausbrand) 
+use if sensors.statusMainState = 6 (Burn Off, Ausbrand)
 
 https://www.rika-firenet.com/images/status/Visu_SpliLog.svg
 use if sensors.statusMainState = 11, 13, 14, 16, 17 or 50 (Wood-log check, Scheitholzcheck)
@@ -86,6 +86,9 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (dev2dev) Extended logging
+
 ### 1.0.0-alpha.6 (2025-01-19)
 * (dev2dev) Check stoveId
 
@@ -106,7 +109,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ## License
 MIT License
 
-Copyright (c) 2024-2025, iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
+Copyright (c) 2024-2025, iobroker-community-adapters <iobroker-community-adapters@gmx.de>
 Copyright (c) 2020 Andreas Wass
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

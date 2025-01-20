@@ -8,8 +8,8 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-//const { default: axios } = require("axios");
-const axios = require('axios').default;
+const { default: axios } = require("axios");
+//const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 const { CookieJar } = require('tough-cookie');
 const { wrapper } = require('axios-cookiejar-support');
@@ -114,6 +114,7 @@ class RikaFirenet extends utils.Adapter {
      */
     setStoveStates(stateNameStr, stateTypeStr, stateRoleStr, stateReadBool, stateWriteBool, stateValueMix) {
         //set object with specific datatype and value, subscribe and set value
+        this.log.debug(`setStoveStates: ${stateNameStr} - ${stateValueMix}`);
         this.setObjectNotExists(`${this.config.mystoveid}.${stateNameStr}`, {
             type: stateTypeStr,
             common: {
@@ -130,6 +131,7 @@ class RikaFirenet extends utils.Adapter {
         this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
 
         //set states
+        this.log.debug(`set state: ${stateNameStr} - ${stateValueMix}`);
         this.setState(`${this.config.mystoveid}.${stateNameStr}`, {
             val: stateValueMix,
             ack: true,
@@ -201,12 +203,15 @@ class RikaFirenet extends utils.Adapter {
                         //create and/or update states in controls, sensors and stoveFeatures
                         for (let [key, value] of Object.entries(content.controls)) {
                             const writeable = writeableStateNames.includes(key);
+                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`controls.${key}`, 'state', '', true, writeable, value);
                         }
                         for (let [key, value] of Object.entries(content.sensors)) {
+                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`sensors.${key}`, 'state', '', true, false, value);
                         }
                         for (let [key, value] of Object.entries(content.stoveFeatures)) {
+                            this.log.debug(`Calling setStoveStates with key: ${key} - value: ${value}`);
                             this.setStoveStates(`stoveFeatures.${key}`, 'state', '', true, false, value);
                         }
                     } else {
