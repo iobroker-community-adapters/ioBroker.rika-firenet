@@ -1,4 +1,7 @@
 # Older Changelogs
+## 1.0.0-alpha.3 (2025-01-19)
+* (dev2dev) Reduced writeable states
+
 ## 1.0.0-alpha.2 (2025-01-19)
 * (dev2dev) Extended logging
 * (dev2dev) Fixed writing value to stove

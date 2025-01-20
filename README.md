@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.8 (2025-01-20)
 * (dev2dev) Only create states that don't exist
 
 ### 1.0.0-alpha.7 (2025-01-20)
@@ -100,9 +100,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.4 (2025-01-19)
 * (dev2dev) Bump release#
-
-### 1.0.0-alpha.3 (2025-01-19)
-* (dev2dev) Reduced writeable states
 
 ## License
 MIT License
