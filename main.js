@@ -8,7 +8,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-const { default: axios } = require("axios");
+const { default: axios } = require('axios');
 //const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 const { CookieJar } = require('tough-cookie');
