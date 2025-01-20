@@ -1,4 +1,9 @@
 # Older Changelogs
+## 1.0.0-alpha.2 (2025-01-19)
+* (dev2dev) Extended logging
+* (dev2dev) Fixed writing value to stove
+* (dev2dev) Changed cookie management
+
 ## 1.0.0-alpha.1 (2025-01-17)
 
 * (dev2dev) Changed http-requests from request to axios

@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.7 (2025-01-20)
 * (dev2dev) Extended logging
 
 ### 1.0.0-alpha.6 (2025-01-19)
@@ -100,11 +100,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.3 (2025-01-19)
 * (dev2dev) Reduced writeable states
-
-### 1.0.0-alpha.2 (2025-01-19)
-* (dev2dev) Extended logging
-* (dev2dev) Fixed writing value to stove
-* (dev2dev) Changed cookie management
 
 ## License
 MIT License
