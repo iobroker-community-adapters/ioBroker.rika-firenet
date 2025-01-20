@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-alpha.9 (2025-01-20)
 * (dev2dev) Fixes prettier issues
 
 ### 1.0.0-alpha.8 (2025-01-20)
@@ -100,9 +100,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.5 (2025-01-19)
 * (dev2dev) Fix adapter checker
-
-### 1.0.0-alpha.4 (2025-01-19)
-* (dev2dev) Bump release#
 
 ## License
 MIT License
