@@ -71,9 +71,7 @@ class RikaFirenet extends utils.Adapter {
         // Initialize your adapter here
 
         if (!this.config.mystoveid || !this.config.myuser || !this.config.mypassword) {
-            this.log.error(
-                'Invalid configuration. Please provide "stoveid", "user" and "password" in the adapter settings!',
-            );
+            this.log.error('Invalid configuration. Please provide "stoveid", "user" and "password" in the adapter settings!');
             return;
         } else if (!this.config.mystoveid.match(/^[a-zA-Z0-9]+$/)) {
             this.log.info('Invalid stove id. Please provide a valid stove id in the adapter settings!');
@@ -189,14 +187,7 @@ class RikaFirenet extends utils.Adapter {
                         this.setStoveStates('lastSeenMinutes', 'state', '', true, false, content.lastSeenMinutes);
                         this.setStoveStates('stoveType', 'state', '', true, false, content.stoveType);
                         this.setStoveStates('oem', 'state', '', true, false, content.oem);
-                        this.setStoveStates(
-                            'lastConfirmedRevision',
-                            'state',
-                            '',
-                            true,
-                            false,
-                            content.lastConfirmedRevision,
-                        );
+                        this.setStoveStates('lastConfirmedRevision', 'state', '', true, false, content.lastConfirmedRevision);
 
                         //create channels
                         this.setStoveStates('controls', 'channel', '', false, false, '');
