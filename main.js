@@ -305,7 +305,7 @@ class RikaFirenet extends utils.Adapter {
     onStateChange(id, state) {
         if (state && !state.ack) {
             // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
             this.setstoveValues(id, state.val);
         }
     }

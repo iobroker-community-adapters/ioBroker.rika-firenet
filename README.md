@@ -86,6 +86,9 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (dev2dev) Change loglevel for state change
+
 ### 1.0.0-alpha.9 (2025-01-20)
 * (dev2dev) Fixes prettier issues
 
