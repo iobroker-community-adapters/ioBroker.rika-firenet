@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-beta.0 (2025-01-22)
 * (dev2dev) Change loglevel for state change
 
 ### 1.0.0-alpha.9 (2025-01-20)
@@ -100,9 +100,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.6 (2025-01-19)
 * (dev2dev) Check stoveId
-
-### 1.0.0-alpha.5 (2025-01-19)
-* (dev2dev) Fix adapter checker
 
 ## License
 MIT License

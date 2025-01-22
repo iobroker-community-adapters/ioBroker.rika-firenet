@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-alpha.9",
+    "version": "1.0.0-beta.0",
     "news": {
+      "1.0.0-beta.0": {
+        "en": "Change loglevel for state change",
+        "de": "Loglevel ändern für Zustandsänderung",
+        "ru": "Изменение уровня журнала для изменения состояния",
+        "pt": "Alterar nível de log para mudança de estado",
+        "nl": "Loglevel wijzigen voor statusverandering",
+        "fr": "Modifier le niveau de log pour le changement d'état",
+        "it": "Cambia il livello di log per la modifica dello stato",
+        "es": "Cambio de nivel de registro para el cambio de estado",
+        "pl": "Zmień poziom logowania dla zmiany stanu",
+        "uk": "Зміна рівня логування для зміни стану",
+        "zh-cn": "更改状态变化的日志级别"
+      },
       "1.0.0-alpha.9": {
         "en": "Fixes prettier issues",
         "de": "Behebt Probleme",
@@ -80,19 +93,6 @@
         "pl": "Bump release #",
         "uk": "Bump реліз#",
         "zh-cn": "弹出#"
-      },
-      "1.0.0-alpha.3": {
-        "en": "Reduced writeable states",
-        "de": "Reduzierte Schreibzustände",
-        "ru": "Снижение уровня записи",
-        "pt": "Estados redutíveis reduzidos",
-        "nl": "Verlaagde schrijfbare toestanden",
-        "fr": "États écrivants réduits",
-        "it": "Riduzione degli stati scrivibili",
-        "es": "Reducir los estados escribibles",
-        "pl": "Zmniejszone stany zapisywalne",
-        "uk": "Зменшені писемні стани",
-        "zh-cn": "可写状态减少"
       }
     },
     "titleLang": {
