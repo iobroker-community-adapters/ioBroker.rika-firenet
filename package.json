@@ -1,6 +1,6 @@
 {
   "name": "iobroker.rika-firenet",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Control your RIKA stove",
   "author": {
     "name": "xsawa32",

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-beta.0",
+    "version": "1.0.0-beta.1",
     "news": {
+      "1.0.0-beta.1": {
+        "en": "Prepare for latest repo",
+        "de": "Bereiten Sie sich auf den neuesten Repo vor",
+        "ru": "Подготовьтесь к последней репо",
+        "pt": "Prepare-se para repo mais recente",
+        "nl": "Voorbereiden voor laatste repo",
+        "fr": "Préparez-vous pour la dernière repo",
+        "it": "Prepararsi per l'ultimo repo",
+        "es": "Prepárate para el último repo",
+        "pl": "Przygotuj się na najnowszy repo",
+        "uk": "Підготовка до останнього репо",
+        "zh-cn": "准备最新回购"
+      },
       "1.0.0-beta.0": {
         "en": "Change loglevel for state change",
         "de": "Loglevel ändern für Zustandsänderung",
@@ -80,19 +93,6 @@
         "pl": "Napraw sprawdzacz adaptera",
         "uk": "Перевірка адаптера",
         "zh-cn": "修补适配器检查器"
-      },
-      "1.0.0-alpha.4": {
-        "en": "Bump release#",
-        "de": "Bump release#",
-        "ru": "Bump release#",
-        "pt": "Bump release#",
-        "nl": "Bump release#",
-        "fr": "Déverrouillage #",
-        "it": "Bump release #",
-        "es": "Bump release#",
-        "pl": "Bump release #",
-        "uk": "Bump реліз#",
-        "zh-cn": "弹出#"
       }
     },
     "titleLang": {

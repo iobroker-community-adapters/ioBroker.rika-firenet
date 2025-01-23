@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-beta.1 (2025-01-23)
 * (dev2dev) Prepare for latest repo
 
 ### 1.0.0-beta.0 (2025-01-22)
@@ -100,9 +100,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.7 (2025-01-20)
 * (dev2dev) Extended logging
-
-### 1.0.0-alpha.6 (2025-01-19)
-* (dev2dev) Check stoveId
 
 ## License
 MIT License
