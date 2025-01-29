@@ -101,9 +101,6 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ### 1.0.0-alpha.8 (2025-01-20)
 * (dev2dev) Only create states that don't exist
 
-### 1.0.0-alpha.7 (2025-01-20)
-* (dev2dev) Extended logging
-
 ## License
 MIT License
 

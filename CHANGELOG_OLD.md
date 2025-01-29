@@ -1,4 +1,7 @@
 # Older Changelogs
+## 1.0.0-alpha.7 (2025-01-20)
+* (dev2dev) Extended logging
+
 ## 1.0.0-alpha.6 (2025-01-19)
 * (dev2dev) Check stoveId
 

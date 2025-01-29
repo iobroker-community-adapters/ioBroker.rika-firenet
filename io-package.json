@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0",
     "news": {
+      "1.0.0": {
+        "en": "Read values immediately after writing one",
+        "de": "Werte sofort nach dem Schreiben eines",
+        "ru": "Чтение значений сразу после написания",
+        "pt": "Leia valores imediatamente após escrever um",
+        "nl": "Lees waarden direct na het schrijven van een",
+        "fr": "Lire les valeurs immédiatement après en avoir écrit une",
+        "it": "Leggere i valori immediatamente dopo aver scritto uno",
+        "es": "Lea los valores inmediatamente después de escribir uno",
+        "pl": "Przeczytaj wartości natychmiast po napisaniu jednego",
+        "uk": "Читати значення відразу після написання одного",
+        "zh-cn": "写入一个后立即读取值"
+      },
       "1.0.0-beta.1": {
         "en": "Prepare for latest repo",
         "de": "Bereiten Sie sich auf den neuesten Repo vor",
@@ -80,19 +93,6 @@
         "pl": "Sprawdzić piec Id",
         "uk": "Перевірка плити Ід",
         "zh-cn": "检查炉子 编号"
-      },
-      "1.0.0-alpha.5": {
-        "en": "Fix adapter checker",
-        "de": "Adapter-Checker fixieren",
-        "ru": "Fix адаптер",
-        "pt": "Verificador de adaptador fixo",
-        "nl": "Repareren adaptercontrole",
-        "fr": "Correction du vérificateur d'adaptateur",
-        "it": "Fissare l'adattatore checker",
-        "es": "Controlador de adaptador fijo",
-        "pl": "Napraw sprawdzacz adaptera",
-        "uk": "Перевірка адаптера",
-        "zh-cn": "修补适配器检查器"
       }
     },
     "titleLang": {
