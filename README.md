@@ -86,7 +86,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.1-beta.0 (2025-01-29)
 * (dev2dev) Read values immediately after writing one
 
 ### 1.0.0-beta.1 (2025-01-23)

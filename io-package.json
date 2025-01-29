@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rika-firenet",
-    "version": "1.0.0",
+    "version": "1.0.1-beta.0",
     "news": {
+      "1.0.1-beta.0": {
+        "en": "Read values immediately after writing one",
+        "de": "Werte sofort nach dem Schreiben eines",
+        "ru": "Чтение значений сразу после написания",
+        "pt": "Leia valores imediatamente após escrever um",
+        "nl": "Lees waarden direct na het schrijven van een",
+        "fr": "Lire les valeurs immédiatement après en avoir écrit une",
+        "it": "Leggere i valori immediatamente dopo aver scritto uno",
+        "es": "Lea los valores inmediatamente después de escribir uno",
+        "pl": "Przeczytaj wartości natychmiast po napisaniu jednego",
+        "uk": "Читати значення відразу після написання одного",
+        "zh-cn": "写入一个后立即读取值"
+      },
       "1.0.0": {
         "en": "Read values immediately after writing one",
         "de": "Werte sofort nach dem Schreiben eines",
@@ -80,19 +93,6 @@
         "pl": "Rozszerzony logowanie",
         "uk": "Розширений журнал",
         "zh-cn": "扩展日志"
-      },
-      "1.0.0-alpha.6": {
-        "en": "Check stoveId",
-        "de": "Prüfofen I",
-        "ru": "Проверить плиту Id",
-        "pt": "Verificar o fogão I",
-        "nl": "Check fornuis Id",
-        "fr": "Vérifiez le poêle Idée",
-        "it": "Verificare la stufa Id",
-        "es": "Estufa de control Id",
-        "pl": "Sprawdzić piec Id",
-        "uk": "Перевірка плити Ід",
-        "zh-cn": "检查炉子 编号"
       }
     },
     "titleLang": {
