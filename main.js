@@ -129,14 +129,15 @@ class RikaFirenet extends utils.Adapter {
             this.stateIds.push(stateNameStr);
         }
 
-        //subscribe states
-        this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
-
         //set states
+        this.log.debug(`setting value for state '${stateNameStr}' to '${stateValueMix}'`);
         this.setState(`${this.config.mystoveid}.${stateNameStr}`, {
             val: stateValueMix,
             ack: true,
         });
+
+        //subscribe states
+        this.subscribeStates(`${this.config.mystoveid}.${stateNameStr}`);
     }
 
     async webLogin(myemail = '', mypassword = '') {
@@ -168,8 +169,9 @@ class RikaFirenet extends utils.Adapter {
     async getStoveValues() {
         if (!this.changeInProgress) {
             try {
+                clearTimeout(this.timeout); // stop running timeout
                 const url = `${baseUrl}/api/client/${this.config.mystoveid}/status`;
-                this.log.debug(`url: ${url}`);
+                this.log.debug(`Reading values from stove. url: ${url}`);
                 const response = await client.get(url);
 
                 this.log.debug(`${response.status} - API-Connection successful`);
@@ -210,7 +212,6 @@ class RikaFirenet extends utils.Adapter {
                     }
 
                     //call getstoveValues() every 1 minute
-                    clearTimeout(this.timeout);
                     this.timeout = setTimeout(() => this.getStoveValues(), this.config.myinterval * 60000);
                 } else {
                     //login failed
@@ -302,11 +303,13 @@ class RikaFirenet extends utils.Adapter {
      * @param id
      * @param state
      */
-    onStateChange(id, state) {
+    async onStateChange(id, state) {
         if (state && !state.ack) {
             // The state was changed
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-            this.setstoveValues(id, state.val);
+            await this.setstoveValues(id, state.val);
+            // after setting a new value, read the values from the stove
+            this.getStoveValues();
         }
     }
 }
