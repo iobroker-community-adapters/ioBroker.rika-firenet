@@ -16,19 +16,6 @@
         "uk": "Читати значення відразу після написання одного",
         "zh-cn": "写入一个后立即读取值"
       },
-      "1.0.0": {
-        "en": "Read values immediately after writing one",
-        "de": "Werte sofort nach dem Schreiben eines",
-        "ru": "Чтение значений сразу после написания",
-        "pt": "Leia valores imediatamente após escrever um",
-        "nl": "Lees waarden direct na het schrijven van een",
-        "fr": "Lire les valeurs immédiatement après en avoir écrit une",
-        "it": "Leggere i valori immediatamente dopo aver scritto uno",
-        "es": "Lea los valores inmediatamente después de escribir uno",
-        "pl": "Przeczytaj wartości natychmiast po napisaniu jednego",
-        "uk": "Читати значення відразу після написання одного",
-        "zh-cn": "写入一个后立即读取值"
-      },
       "1.0.0-beta.1": {
         "en": "Prepare for latest repo",
         "de": "Bereiten Sie sich auf den neuesten Repo vor",
@@ -67,32 +54,6 @@
         "pl": "Fixes ładniejsze problemy",
         "uk": "Виправлення непогашених питань",
         "zh-cn": "解决更美的问题"
-      },
-      "1.0.0-alpha.8": {
-        "en": "Only create states that don't exist",
-        "de": "Erstellen Sie nur Staaten, die nicht existieren",
-        "ru": "Только создать государства, которые не существуют",
-        "pt": "Apenas crie estados que não existem",
-        "nl": "Maak alleen staten die niet bestaan",
-        "fr": "Seulement créer des états qui n'existent pas",
-        "it": "Crea solo stati che non esistono",
-        "es": "Sólo crea estados que no existen",
-        "pl": "Tylko tworzyć stany, które nie istnieją",
-        "uk": "Тільки створити стани, які не існує",
-        "zh-cn": "只创建不存在的状态"
-      },
-      "1.0.0-alpha.7": {
-        "en": "Extended logging",
-        "de": "Erweiterte Protokollierung",
-        "ru": "Расширенные лесозаготовки",
-        "pt": "Registro estendido",
-        "nl": "Uitgebreide logging",
-        "fr": "Enregistrement étendu",
-        "it": "Logging esteso",
-        "es": "Registro ampliado",
-        "pl": "Rozszerzony logowanie",
-        "uk": "Розширений журнал",
-        "zh-cn": "扩展日志"
       }
     },
     "titleLang": {
