@@ -2,10 +2,7 @@
   "name": "iobroker.rika-firenet",
   "version": "1.0.1-beta.0",
   "description": "Control your RIKA stove",
-  "author": {
-    "name": "xsawa32",
-    "email": "a.wass@sbg.at"
-  },
+  "author": "xsawa32 <a.wass@sbg.at>",
   "contributors": [
     "iobroker-community-adapters <iobroker-community-adapters@gmx.de>",
     "mcm1957 <iobroker-community-adapters@gmx.de>"

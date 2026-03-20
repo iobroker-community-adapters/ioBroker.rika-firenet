@@ -86,6 +86,10 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 	Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires admin >= 7.7.22 now
+
 ### 1.0.1-beta.0 (2025-01-29)
 * (dev2dev) Read values immediately after writing one
 
@@ -104,7 +108,8 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 ## License
 MIT License
 
-Copyright (c) 2024-2025, iobroker-community-adapters <iobroker-community-adapters@gmx.de>
+
+Copyright (c) 2024-2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
 Copyright (c) 2020 Andreas Wass
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
