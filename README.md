@@ -109,8 +109,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 MIT License
 
 
-Copyright (c) 2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
-Copyright (c) 2024-2025, iobroker-community-adapters <iobroker-community-adapters@gmx.de>
+Copyright (c) 2024-2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
 Copyright (c) 2020 Andreas Wass
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
