@@ -88,6 +88,7 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 -->
 
 ### **WORK IN PROGRESS**
+- (iobroker-bot) Adapter requires node.js >= 22 now.
 - (copilot) Adapter requires admin >= 7.7.22 now
 
 ### 1.0.1-beta.0 (2025-01-29)
@@ -104,6 +105,8 @@ This adapter would not have been possible without the great work of @xsawa32 (ht
 
 ### 1.0.0-alpha.8 (2025-01-20)
 * (dev2dev) Only create states that don't exist
+
+[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 MIT License
