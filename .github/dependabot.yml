@@ -1,5 +1,8 @@
-# Dependabot will run on day 11 of each month at 02:30 (Europe/Berlin timezone)
-version: 2
+# Dependabot configuration
+# Cooldown delays updating normal npm dependencies by 7 days but allows security updates to be processed immediately.
+# Note: Cooldown is not supported for the github-actions ecosystem.
+# Reference: https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference
+version: !!int '2'
 updates:
 
   - package-ecosystem: 'npm'
@@ -8,8 +11,10 @@ updates:
       interval: 'cron'
       timezone: 'Europe/Berlin'
       cronjob: '30 2 11 * *'
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: !!int '15'
     versioning-strategy: 'increase'
+    cooldown:
+      default-days: !!int '7'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
@@ -17,4 +22,4 @@ updates:
       interval: 'cron'
       timezone: 'Europe/Berlin'
       cronjob: '30 2 11 * *'
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: !!int '15'
