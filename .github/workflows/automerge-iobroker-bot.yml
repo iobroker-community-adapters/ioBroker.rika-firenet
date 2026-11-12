@@ -1,7 +1,3 @@
-# Workflow for auto-merging ioBroker-Bot PRs
-# This workflow uses the action-automerge-iobroker-bot action to automatically merge
-# PRs created by ioBroker-Bot if all required checks pass successfully.
-
 name: Auto-Merge ioBroker-Bot PRs
 
 on:
