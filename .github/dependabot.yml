@@ -6,15 +6,16 @@ version: !!int '2'
 updates:
 
   - package-ecosystem: 'npm'
-    directory: '/'
+    directories:
+      - '**/*'
     schedule:
       interval: 'cron'
       timezone: 'Europe/Berlin'
       cronjob: '30 2 11 * *'
-    open-pull-requests-limit: !!int '15'
+    open-pull-requests-limit: 25
     versioning-strategy: 'increase'
     cooldown:
-      default-days: !!int '7'
+      default-days: 7
 
   - package-ecosystem: 'github-actions'
     directory: '/'
@@ -22,4 +23,4 @@ updates:
       interval: 'cron'
       timezone: 'Europe/Berlin'
       cronjob: '30 2 11 * *'
-    open-pull-requests-limit: !!int '15'
+    open-pull-requests-limit: 15
